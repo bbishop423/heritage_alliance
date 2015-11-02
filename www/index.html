@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+    <!--
+  * Please see the included README.md file for license terms and conditions.
+  -->
+
+    <head>
+        <link rel="stylesheet" type="text/css" href="icon-fonts/font-awesome-4.3.0/css/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="icon-fonts/elusive-icons-2.0.0/css/elusive-icons.css">
+        <link rel="stylesheet" type="text/css" href="slate/css/slate.min.css" class="uib-framework-theme">
+        <meta charset="UTF-8">
+        <title>The Heritage Alliance of N.E. Tennessee and S.W. Virginia</title>
+        <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+
+        <!--
+  * The "meta viewport" tag (below) helps your app size appropriately to a device's ideal viewport.
+  * Note that Windows device viewports work better when initialized using the @viewport CSS rule.
+  * For a quick overview of "meta viewport" and @viewport, see this article:
+  *   http://webdesign.tutsplus.com/tutorials/htmlcss-tutorials/quick-tip-dont-forget-the-viewport-meta-tag
+  * To see how it works, try your app on a real device with and without a "meta viewport" tag.
+  * Additional useful references include:
+  *   http://www.quirksmode.org/mobile/viewports.html
+  *   http://www.quirksmode.org/mobile/metaviewport/devices.html
+  *   https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+-->
+
+        <!-- <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1"> -->
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=no">
+        <!-- <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes, minimum-scale=1, maximum-scale=2"> -->
+
+        <style>
+            /* following three (cascaded) are equivalent to above three meta viewport statements */
+            /* see http://www.quirksmode.org/blog/archives/2014/05/html5_dev_conf.html */
+            /* see http://dev.w3.org/csswg/css-device-adapt/ */
+                @-ms-viewport { width: 100vw ; min-zoom: 100% ; zoom: 100% ; }          @viewport { width: 100vw ; min-zoom: 100% zoom: 100% ; }
+                @-ms-viewport { user-zoom: fixed ; min-zoom: 100% ; }                   @viewport { user-zoom: fixed ; min-zoom: 100% ; }
+                /*@-ms-viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }   @viewport { user-zoom: zoom ; min-zoom: 100% ; max-zoom: 200% ; }*/
+        </style>
+
+        <link rel="stylesheet" href="css/app.css">
+        <link rel="stylesheet" type="text/css" href="css/index_main.less.css" class="main-less">
+
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work below -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+
+        <!-- Recommended location for your JavaScript libraries -->
+        <!-- These library references (below) are just examples to give you the general idea... -->
+        <!-- <script src="lib/mc/hammer.js"></script> -->
+        <!-- <script src="lib/ft/fastclick.js"></script> -->
+
+        <!--
+  * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
+  * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
+  * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
+  * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
+-->
+        <script src="cordova.js" id="xdkJScordova_"></script>
+
+        <script src="js/app.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.min.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/bs_subpage.js"></script>
+        <script type="application/javascript" src="sidebar/js/hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
+        <script>
+            document.addEventListener("intel.xdk.device.barcode.scan", barcodeScanned, false);
+function barcodeScanned(evt) {
+    intel.xdk.notification.beep(1);
+    if (evt.type == "intel.xdk.device.barcode.scan") {
+        if (evt.success == true) {
+            var url = evt.codedata;
+            intel.xdk.device.showRemoteSite(url, 264, 0,56, 48)
+        } else {
+          //scan cancelled
+        }
+    }
+}
+intel.xdk.device.scanBarcode();
+        </script>
+
+        <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUJppU6Ll2sFw68zFj_p8fh74Q3xN3GI&amp;sensor=true"></script>
+        <script type="application/javascript" src="google_maps/google_maps.js"></script>
+    </head>
+
+    <body>
+        <!-- IMPORTANT: Do not include a weinre script tag as part of your release builds! -->
+        <!-- Place your remote debugging (weinre) script URL from the Test tab here, if it does not work above -->
+        <!-- <script src="http://debug-software.intel.com/target/target-script-min.js#insertabiglongfunkynumberfromthexdkstesttab"></script> -->
+        <div class="upage backgroundImage" id="mainpage">
+            <div class="upage-outer">
+                <div class="uib-header header-bg container-group inner-element uib_w_1 uib-header-fixed size" data-uib="layout/header" data-ver="0" id="header">
+                    <h2>Heritage Link</h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_3 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-btn"><i class="fa fa-navicon" data-position="icon only"></i>
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right">
+
+                        <button class="btn widget uib_w_25 d-margins btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="home-btn"><i class="glyphicon glyphicon-home" data-position="icon only"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="upage-content ac0 content-area vertical-col left" id="page_98_19">
+                    <div class="grid grid-pad urow uib_row_2 row-height-2" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_2 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <button class="btn widget uib_w_4 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="aboutus-btn"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>About Us</button>
+                                <button class="btn widget uib_w_5 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="museums-btn"><i class="el el-briefcase button-icon-left" data-position="left"></i>Museums</button>
+                                <button class="btn widget uib_w_6 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="exhibits-btn"><i class="el el-camera button-icon-left" data-position="left"></i>Exhibits</button>
+                                <button class="btn widget uib_w_7 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="calendar-btn"><i class="el el-calendar button-icon-left" data-position="left"></i>Calendar</button>
+                                <button class="btn widget uib_w_8 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="contact-btn"><i class="glyphicon glyphicon-envelope button-icon-left" data-position="left"></i>Contact</button><span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+
+                </div>
+                <div class="uib-footer uib-footer-fixed footer-bg container-group inner-element uib_w_2 size-ft" data-uib="layout/footer" data-ver="0" id="main-footer">
+                    <h2></h2>
+                    <div class="widget-container wrapping-col single-centered"></div>
+                    <div class="widget-container content-area horiz-area wrapping-col left">
+                        <button class="btn widget uib_w_28 d-margins btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"><i class="el el-facebook" data-position="icon only"></i>
+                        </button>
+                    </div>
+                    <div class="widget-container content-area horiz-area wrapping-col right">
+
+                    </div>
+                </div>
+                <div id="aboutuspage" class="upage-content vertical-col left hidden"></div>
+                <div id="museumspage" class="upage-content vertical-col left hidden"></div>
+                <div id="exhibitspage" class="upage-content vertical-col left hidden">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_6 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="widget uib_w_19 d-margins txt-format" data-uib="media/text" data-ver="0" id="exhibitspage-txt">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div>
+                                        <p>While in the museum, be on the look out for our QR codes! If you see one, use the "Scan Now" button below to scan the code and take you to even more fascinating information about that exhibit!</p>
+                                    </div>
+                                </div><span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+                    <button class="btn widget uib_w_18 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="scan-btn"><i class="glyphicon glyphicon-qrcode button-icon-left" data-position="left"></i>Scan Now</button>
+                    <script>
+                        $("#scan-btn").on("click", intel.xdk.scanBarcode);
+                    </script>
+                </div>
+                <div id="calendarpage" class="upage-content vertical-col left hidden"></div>
+                <div id="contactpage" class="upage-content vertical-col left hidden">
+
+                    <span class="widget uib_w_20 d-margins color badge" data-uib="twitter%20bootstrap/badge_and_label" data-ver="1">Contact Us</span>
+                    <div class="table-thing widget uib_w_21 d-margins label-text" data-uib="twitter%20bootstrap/input" data-ver="1">
+                        <label class="narrow-control label-inline">Name:</label>
+                        <input class="wide-control form-control default input-sm" type="text">
+                    </div>
+                    <div class="table-thing widget uib_w_22 d-margins label-text" data-uib="twitter%20bootstrap/input" data-ver="1">
+                        <label class="narrow-control label-inline">Email:</label>
+                        <input class="wide-control form-control default input-sm" type="email">
+                    </div>
+                    <div class="table-thing widget uib_w_23 d-margins label-text" data-uib="twitter%20bootstrap/input" data-ver="1">
+                        <label class="narrow-control label-inline">Message:</label>
+                        <input class="wide-control form-control default input-lg" type="text">
+                    </div>
+                    <button class="btn widget uib_w_24 d-margins btn-sm btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="form-submit-btn"><i class="glyphicon glyphicon-ok-circle button-icon-left" data-position="left"></i>Submit</button>
+                    <span class="widget uib_w_26 d-margins badge color" data-uib="twitter%20bootstrap/badge_and_label" data-ver="1">Map</span>
+                    <div class="widget uib_w_27 maps-size d-margins" data-uib="media/google_maps" data-ver="0" data-rpath="null" data-center-address="212 East Sabin Drive Jonesborough, TN 37659" id="google_map" data-center-longitude=" -82.472011" data-center-latitude="36.297101"
+                    data-zoom="15" data-marker-title="The Heritage Alliance"></div>
+                </div>
+                <div class="inner-element uib_w_10 uib_sidebar leftbar bar-bg thumb-bg bar-gutter swipe" data-uib="layout/left_sidebar" data-ver="1" data-anim="{'style':'overlap', 'v':200, 'side':'left', 'oh':18, 'dur':200}" id="sidebar">
+                    <div class="sidebar-thumb"></div>
+
+                    <div class="sidebar-content content-area vertical-col">
+
+                        <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_3 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+                                    <button class="btn widget uib_w_11 d-margins btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="closemenu-btn"><i class="glyphicon glyphicon-remove button-icon-left" data-position="left"></i>Close Menu</button>
+                                    <div class="grid grid-pad urow uib_row_4 row-height-4" data-uib="layout/row" data-ver="0">
+                                        <div class="col uib_col_4 col-1_12-12" data-uib="layout/col" data-ver="0">
+                                            <div class="widget-container content-area vertical-col">
+                                                <span class="uib_shim"></span>
+                                            </div>
+                                        </div>
+                                        <span class="uib_shim"></span>
+                                    </div>
+                                    <button class="btn widget uib_w_12 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-aboutus"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>About Us</button>
+                                    <button class="btn widget uib_w_13 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-museums"><i class="el el-briefcase button-icon-left" data-position="left"></i>Museums</button>
+                                    <button class="btn widget uib_w_14 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-exhibits"><i class="el el-camera button-icon-left" data-position="left"></i>Exhibits</button>
+                                    <button class="btn widget uib_w_15 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-calendar"><i class="el el-calendar button-icon-left" data-position="left"></i>Calendar</button>
+                                    <button class="btn widget uib_w_16 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-contact"><i class="glyphicon glyphicon-envelope button-icon-left" data-position="left"></i>Contact</button>
+                                    <div class="widget uib_w_29 scale-image d-margins" data-uib="media/img" data-ver="0">
+                                        <figure class="figure-align">
+                                            <img src="images/heritage-header-logo-01.png">
+                                            <figcaption data-position="bottom"></figcaption>
+                                        </figure>
+                                    </div><span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+
+                        <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
+                            <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
+                                <div class="widget-container content-area vertical-col">
+
+                                    <span class="uib_shim"></span>
+                                </div>
+                            </div>
+                            <span class="uib_shim"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+
+</html>
