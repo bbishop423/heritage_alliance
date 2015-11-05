@@ -8,7 +8,7 @@ var calender_btn = $('#calender-btn');
 var contact_btn = $('#contact-btn');
 
 //swipe menu buttons
-var close_menu = $('#closemenu-btn');
+var menu_close = $('#closemenu-btn');
 var menu_aboutus = $('#menu-aboutus');
 var menu_museums = $('#menu-museums');
 var menu_exhibits = $('#menu-exhibits');
