@@ -1,13 +1,14 @@
 //main screen buttons
+var menu_btn = $('#menu-btn');
+var home_btn = $('#home-btn');
 var aboutus_btn = $('#aboutus-btn');
 var museums_btn = $('#museums-btn');
 var exhibits_btn = $('#exhibits-btn');
 var calender_btn = $('#calender-btn');
 var contact_btn = $('#contact-btn');
-var home_btn = $('#home-btn');
-var menu_btn = $('#menu-btn');
 
 //swipe menu buttons
+var close_menu = $('#closemenu-btn');
 var menu_aboutus = $('#menu-aboutus');
 var menu_museums = $('#menu-museums');
 var menu_exhibits = $('#menu-exhibits');
