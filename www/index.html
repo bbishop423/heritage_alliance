@@ -89,7 +89,7 @@ intel.xdk.device.scanBarcode();
 
         <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUJppU6Ll2sFw68zFj_p8fh74Q3xN3GI&amp;sensor=true"></script>
         <script type="application/javascript" src="google_maps/google_maps.js"></script>
-		<!-- <script type="application/javascript" src="js/lawnchair-0.6.1.min.js"></script> -->
+
     </head>
 
     <body>
@@ -147,13 +147,34 @@ intel.xdk.device.scanBarcode();
                                     <div>
                                         <p>About The Heritage Alliance</p>
                                     </div>
+									<div>
+										<p id="about-body"></p>
+									</div>
                                 </div><span class="uib_shim"></span>
                             </div>
                         </div>
                         <span class="uib_shim"></span>
                     </div>
 				</div>
-                <div id="museumspage" class="upage-content vertical-col left hidden"></div>
+                <div id="museumspage" class="upage-content vertical-col left hidden">
+					<div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_6 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="widget uib_w_19 d-margins txt-format" data-uib="media/text" data-ver="0" id="museumspage-txt">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div>
+                                        <p>Heritage Alliance Museums</p>
+                                    </div>
+									<div>
+										<p id="museums-body"></p>
+									</div>
+                                </div><span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+				</div>
                 <div id="exhibitspage" class="upage-content vertical-col left hidden">
                     <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
                         <div class="col uib_col_6 col-0_12-12" data-uib="layout/col" data-ver="0">
@@ -174,7 +195,25 @@ intel.xdk.device.scanBarcode();
                         $("#scan-btn").on("click", intel.xdk.scanBarcode);
                     </script>
                 </div>
-                <div id="calendarpage" class="upage-content vertical-col left hidden"></div>
+                <div id="calendarpage" class="upage-content vertical-col left hidden">
+					<div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                        <div class="col uib_col_6 col-0_12-12" data-uib="layout/col" data-ver="0">
+                            <div class="widget-container content-area vertical-col">
+                                <div class="widget uib_w_19 d-margins txt-format" data-uib="media/text" data-ver="0" id="calenderpage-txt">
+                                    <div class="widget-container left-receptacle"></div>
+                                    <div class="widget-container right-receptacle"></div>
+                                    <div>
+                                        <p>Heritage Alliance Calender</p>
+                                    </div>
+									<div>
+										<p id="calender-body"></p>
+									</div>
+                                </div><span class="uib_shim"></span>
+                            </div>
+                        </div>
+                        <span class="uib_shim"></span>
+                    </div>
+				</div>
                 <div id="contactpage" class="upage-content vertical-col left hidden">
 
                     <span class="widget uib_w_20 d-margins color badge" data-uib="twitter%20bootstrap/badge_and_label" data-ver="1">Contact Us</span>
