@@ -88,6 +88,9 @@ function calender_click(){
 	var calender_body = $('#calender-body');
 	calender_body.empty();
 	
+	//going to append links to check the calender for tomorrows date recursively
+	//also going to append a link to go back to today's calender date
+	
 	var date = new Date();
 	var month = date.getMonth();
 	var day = date.getDate();
