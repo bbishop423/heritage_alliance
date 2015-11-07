@@ -18,8 +18,9 @@ var menu_contact = $('#menu-contact');
 //global variables
 var hadb; //database object
 var qb; //query builder
-var heritage_alliance_url = 'http://www.heritageall.org/'; //i know we still dont have server side ajax on here
-var xmlhttp; //ajax object
+var heritage_alliance_url = 'http://einstein.etsu.edu/~bishopbj/';
+//var heritage_alliance_url = 'http://www.heritageall.org/'; //this is the real url but we cant use it for now
+var response_data;
 
 
 window.onload = function(){
@@ -48,8 +49,8 @@ var QueryBuilder = function(){ //i know dr. barrett loves comments so this one's
 
 var HeritageAllianceDatabase = function(){
 	this.get_data = function(query_url){
-		$.getJSON(query_url, function(query_data){
-			return query_data;
+		$.get(query_url, function(query_data){
+			response_data = query_data;
 		});
 	};
 }
@@ -69,10 +70,13 @@ function init(){
 function about_click(){
 	var about_body = $('#about-body');
 	about_body.empty();
-	//faking the ajax call here to get about text from db
-	//var query_url = qb.build_query("about_info", "main_text");
-	//var about_data = hadb.get_data(query_url);
-	about_body.append(fake_data.info);
+	var query_url = qb.build_query("about", "mission");
+	var about_data = hadb.get_data(query_url);
+	
+	console.log(response_data);
+	
+	about_body.append(response_data);
+	response_data = '';
 }
 
 function museums_click(){
