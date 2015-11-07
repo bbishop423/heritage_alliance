@@ -18,7 +18,7 @@ var menu_contact = $('#menu-contact');
 //global variables
 var hadb; //database object
 var qb; //query builder
-var heritage_alliance_url = 'http://einstein.etsu.edu/~bishopbj/';
+var heritage_alliance_url = 'http://einstein.etsu.edu/~bishopbj/'; //using this url for testing
 //var heritage_alliance_url = 'http://www.heritageall.org/'; //this is the real url but we cant use it for now
 var response_data;
 
@@ -72,9 +72,6 @@ function about_click(){
 	about_body.empty();
 	var query_url = qb.build_query("about", "mission");
 	var about_data = hadb.get_data(query_url);
-	
-	console.log(response_data);
-	
 	about_body.append(response_data);
 	response_data = '';
 }
