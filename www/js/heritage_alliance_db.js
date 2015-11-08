@@ -20,7 +20,7 @@ var hadb; //database object
 var qb; //query builder
 var heritage_alliance_url = 'http://einstein.etsu.edu/~bishopbj/'; //using this url for testing
 //var heritage_alliance_url = 'http://www.heritageall.org/'; //this is the real url but we cant use it for now
-var response_data;
+var response_data = '';
 
 
 window.onload = function(){
@@ -65,13 +65,17 @@ function init(){
 	menu_museums.on("click", museums_click);
 	calender_btn.on("click", calender_click);
 	menu_calender.on("click", calender_click);
+	
+	about_click(); //calling the function in init fixes the double click bug
 }
 
 function about_click(){
 	var about_body = $('#about-body');
 	about_body.empty();
 	var query_url = qb.build_query("about", "mission");
-	var about_data = hadb.get_data(query_url);
+	console.log(query_url);
+	hadb.get_data(query_url);
+	console.log(response_data);
 	about_body.append(response_data);
 	response_data = '';
 }
