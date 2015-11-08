@@ -73,9 +73,7 @@ function about_click(){
 	var about_body = $('#about-body');
 	about_body.empty();
 	var query_url = qb.build_query("about", "mission");
-	console.log(query_url);
 	hadb.get_data(query_url);
-	console.log(response_data);
 	about_body.append(response_data);
 	response_data = '';
 }
