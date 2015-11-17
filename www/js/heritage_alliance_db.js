@@ -78,8 +78,22 @@ function about_click(){
 	response_data = '';
 }
 
+function chester_click(){
+	var button_div = $('#museums-buttons');
+	button_div.empty();
+}
+
+function washington_click(){
+	var button_div = $('#museums-buttons');
+	button_div.empty();
+}
+
 function museums_click(){
 	var museums_body = $('#museums-body');
+	var chester_museum = $('#chester-btn');
+	var washington_museum = $('#washington-btn');
+	chester_museum.on("click", chester_click);
+	washington_museum.on("click", washington_click);
 	museums_body.empty();
 	//faking the ajax call here to get about text from db
 	//var query_url = qb.build_query("museum_info", "main_text");
