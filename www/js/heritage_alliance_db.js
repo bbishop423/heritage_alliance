@@ -22,6 +22,7 @@ var heritage_alliance_url = 'http://einstein.etsu.edu/~bishopbj/'; //using this 
 //var heritage_alliance_url = 'http://www.heritageall.org/'; //this is the real url but we cant use it for now
 var response_data = '';
 var calendar_data = '';
+var events_for_date = '';
 
 
 window.onload = function(){
@@ -72,15 +73,29 @@ function init(){
 	menu_calender.on("click", calender_click);
 	
 	about_click(); //calling the function in init fixes the double click bug
-	get_calendar_events();
+	get_calendar_events(); //fixing double click bug for this event also
 }
 
 function get_calendar_events(){
 	var query_url = qb.build_calender_query();
 	hadb.get_calendar_data(query_url);
+}
+
+function find_events_by_date(month, day, year){
+	month = String(month);
+	day = String(day);
+	year = String(year);
+	var date_to_find = year + "-" + month + "-" + day;
+	var list_of_events = [];
 	
-	console.log(calendar_data);
-	calendar_data = '';
+	for(i=0;i<calendar_data.length;i++){
+		var event_date = calendar_data[i]["start"].substring(0, 10);
+		if(date_to_find === event_date){
+			list_of_events.push(calendar_data[i]);
+		}
+	}
+	
+	return list_of_events;
 }
 
 function about_click(){
@@ -130,4 +145,8 @@ function calender_click(){
 	calender_body.append(date);
 	
 	get_calendar_events();
+	var events = find_events_by_date(11, 28, 2015);
+	calender_body.append(String(events)); //got to fix this later
+	
+	console.log(events);
 }
