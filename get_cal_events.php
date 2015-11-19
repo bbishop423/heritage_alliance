@@ -34,7 +34,7 @@ function parse_events($all_events){
 	}
 
 	for($i=0;$i<count($itemized_events);$i++){
-		if (count($itemized_events[$i]) > 6){
+		while (count($itemized_events[$i]) > 6){
 			$itemized_events[$i][0] .= "," . $itemized_events[$i][1];
 			unset($itemized_events[$i][1]);
 			$itemized_events[$i] = array_values($itemized_events[$i]);
@@ -64,20 +64,22 @@ function remove_whitespace($events_array){
 }
 
 function get_key_values($events_array){
-	$assoc_array = (array)null; 
-	for($i=0;$i<count($events_array);$i++){
+ 	for($i=0;$i<count($events_array);$i++){
+		$assoc_array = (array)null;
 		for($j=0;$j<count($events_array[$i]);$j++){
 			$colon = strpos($events_array[$i][$j], ": ");
-			//echo $colon . " " .$events_array[$i][$j]. " <br />";
 			$key = substr($events_array[$i][$j], 0, $colon);
 			if ($j === 3){
 				$value = substr($events_array[$i][$j], $colon + 2);
 			}else{
 				$value = substr($events_array[$i][$j], $colon + 3, -1);	
 			}
-			echo $key . " : " . $value . "<br />";
+			$assoc_array[$key] = $value;
 		}
+		$events_array[$i] = $assoc_array;
 	}
+
+	return $events_array;
 }
 
 $events1 = curl_download($ha_url);
@@ -85,8 +87,8 @@ $events2 = parse_output($events1);
 $events3 = parse_events($events2);
 $events4 = remove_colors($events3);
 $events5 = remove_whitespace($events4);
-get_key_values($events5);
-//print_r($events4);
+$events6 = get_key_values($events5);
+print_r($events6);
 
 ?>
 
