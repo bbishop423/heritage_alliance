@@ -1,5 +1,7 @@
 <?php
 
+header('Access-Control-Allow-Origin: *');
+
 $ha_url = "http://www.heritageall.org/calendar/";
 
 function curl_download($url){
@@ -71,6 +73,11 @@ function get_key_values($events_array){
 			$key = substr($events_array[$i][$j], 0, $colon);
 			if ($j === 3){
 				$value = substr($events_array[$i][$j], $colon + 2);
+				if ($value === "false"){
+					$value = false;
+				}else{
+					$value = true;
+				}
 			}else{
 				$value = substr($events_array[$i][$j], $colon + 3, -1);	
 			}
@@ -82,13 +89,22 @@ function get_key_values($events_array){
 	return $events_array;
 }
 
-$events1 = curl_download($ha_url);
-$events2 = parse_output($events1);
-$events3 = parse_events($events2);
-$events4 = remove_colors($events3);
-$events5 = remove_whitespace($events4);
-$events6 = get_key_values($events5);
-print_r($events6);
+function get_json_cal_events($events_array){
+	$json_cal = json_encode($events_array);
+	echo $json_cal;
+}
+
+function get_calendar_events($cal_url){
+	$events1 = curl_download($cal_url);
+	$events2 = parse_output($events1);
+	$events3 = parse_events($events2);
+	$events4 = remove_colors($events3);
+	$events5 = remove_whitespace($events4);
+	$events6 = get_key_values($events5);
+	get_json_cal_events($events6);
+}
+
+get_calendar_events($ha_url);
 
 ?>
 

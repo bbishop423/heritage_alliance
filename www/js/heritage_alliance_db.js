@@ -21,6 +21,7 @@ var qb; //query builder
 var heritage_alliance_url = 'http://einstein.etsu.edu/~bishopbj/'; //using this url for testing
 //var heritage_alliance_url = 'http://www.heritageall.org/'; //this is the real url but we cant use it for now
 var response_data = '';
+var calendar_data = '';
 
 
 window.onload = function(){
@@ -40,9 +41,8 @@ var QueryBuilder = function(){ //i know dr. barrett loves comments so this one's
 		var query_url = heritage_alliance_url + 'get_data.php?info_type=' + info_type + '&info_item=' + info_item;
 		return query_url;
 	};
-	this.build_calender_query = function(month, date, year, day_of_the_week){
-		var query_url = heritage_alliance_url + 'get_calender_event.php?month=' + month + '&date=' + date +
-		'&year=' + year + '&day=' + day_of_the_week;
+	this.build_calender_query = function(){
+		var query_url = heritage_alliance_url + 'get_cal_events.php';
 		return query_url;
 	};
 }
@@ -51,6 +51,11 @@ var HeritageAllianceDatabase = function(){
 	this.get_data = function(query_url){
 		$.get(query_url, function(query_data){
 			response_data = query_data;
+		});
+	};
+	this.get_calendar_data = function(query_url){
+		$.getJSON(query_url, function(query_data){
+			calendar_data = query_data;
 		});
 	};
 }
@@ -67,6 +72,15 @@ function init(){
 	menu_calender.on("click", calender_click);
 	
 	about_click(); //calling the function in init fixes the double click bug
+	get_calendar_events();
+}
+
+function get_calendar_events(){
+	var query_url = qb.build_calender_query();
+	hadb.get_calendar_data(query_url);
+	
+	console.log(calendar_data);
+	calendar_data = '';
 }
 
 function about_click(){
@@ -107,15 +121,13 @@ function calender_click(){
 	
 	//going to append links to check the calender for tomorrows date recursively
 	//also going to append a link to go back to today's calender date
-	
 	var date = new Date();
 	var month = date.getMonth();
 	var day = date.getDate();
 	var year = date.getFullYear();
 	var day_of_the_week = date.getDay();
 	
-	//faking the ajax call here to get about text from db
-	//var query_url = qb.build_calender_query(month, day, year, day_of_the_week);
-	//var calender_data = hadb.get_data(query_url);
 	calender_body.append(date);
+	
+	get_calendar_events();
 }
