@@ -35,7 +35,7 @@ function parse_events($all_events){
 
 	for($i=0;$i<count($itemized_events);$i++){
 		if (count($itemized_events[$i]) > 6){
-			$itemized_events[$i][0] .= $itemized_events[$i][1];
+			$itemized_events[$i][0] .= "," . $itemized_events[$i][1];
 			unset($itemized_events[$i][1]);
 			$itemized_events[$i] = array_values($itemized_events[$i]);
 		}
@@ -70,7 +70,11 @@ function get_key_values($events_array){
 			$colon = strpos($events_array[$i][$j], ": ");
 			//echo $colon . " " .$events_array[$i][$j]. " <br />";
 			$key = substr($events_array[$i][$j], 0, $colon);
-			$value = substr($events_array[$i][$j], $colon + 2);
+			if ($j === 3){
+				$value = substr($events_array[$i][$j], $colon + 2);
+			}else{
+				$value = substr($events_array[$i][$j], $colon + 3, -1);	
+			}
 			echo $key . " : " . $value . "<br />";
 		}
 	}
