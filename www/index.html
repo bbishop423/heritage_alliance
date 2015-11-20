@@ -48,7 +48,7 @@
         <!-- These library references (below) are just examples to give you the general idea... -->
         <!-- <script src="lib/mc/hammer.js"></script> -->
         <!-- <script src="lib/ft/fastclick.js"></script> -->
-		
+
         <!--
   * cordova.js is a phantom lib for "Cordova HTML5 web app," it does nothing in a "Standard HTML5 web app"
   * Seeing a "Failed to load resource: net::ERR_FILE_NOT_FOUND" message caused by this "cordova.js" script?
@@ -107,8 +107,6 @@ intel.xdk.device.scanBarcode();
                     </div>
                     <div class="widget-container content-area horiz-area wrapping-col right">
 
-                        <button class="btn widget uib_w_25 d-margins btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="home-btn"><i class="glyphicon glyphicon-home" data-position="icon only"></i>
-                        </button>
                     </div>
                 </div>
                 <div class="upage-content ac0 content-area vertical-col left" id="page_98_19">
@@ -130,7 +128,7 @@ intel.xdk.device.scanBarcode();
                     <h2></h2>
                     <div class="widget-container wrapping-col single-centered"></div>
                     <div class="widget-container content-area horiz-area wrapping-col left">
-                        <button class="btn widget uib_w_28 d-margins btn-link" data-uib="twitter%20bootstrap/button" data-ver="1"><i class="el el-facebook" data-position="icon only"></i>
+                        <button class="btn widget uib_w_28 d-margins btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="facebook-btn"><i class="el el-facebook" data-position="icon only"></i>
                         </button>
                     </div>
                     <div class="widget-container content-area horiz-area wrapping-col right">
@@ -138,26 +136,49 @@ intel.xdk.device.scanBarcode();
                     </div>
                 </div>
                 <div id="aboutuspage" class="upage-content vertical-col left hidden">
-					<div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
-                        <div class="col uib_col_6 col-0_12-12" data-uib="layout/col" data-ver="0">
-                            <div class="widget-container content-area vertical-col">
-                                <div class="widget uib_w_19 d-margins txt-format" data-uib="media/text" data-ver="0" id="aboutusspage-txt">
-                                    <div class="widget-container left-receptacle"></div>
-                                    <div class="widget-container right-receptacle"></div>
-                                    <div>
-                                        <p>About The Heritage Alliance</p>
-                                    </div>
-									<div>
-										<p id="about-body"></p>
-									</div>
-                                </div><span class="uib_shim"></span>
-                            </div>
+
+                    <div class="widget uib_w_29 d-margins txt-format" data-uib="media/text" data-ver="0">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>Mission</p>
+                            <p>The Heritage Alliance is dedicated to the preservation of the architectural, historical, and cultural heritage of our region and to providing educational experiences related to history and heritage for a wide range of audiences.</p>
                         </div>
-                        <span class="uib_shim"></span>
                     </div>
-				</div>
+                    <figure class="margin-auto widget uib_w_32 d-margins alignment" data-uib="media/video" data-ver="0">
+                        <video id="about us video" controls="controls">
+                            <source src="https://www.facebook.com/video.php?v=10151533005473885" type="video/webm">
+                                <source src="https://www.facebook.com/video.php?v=10151533005473885" type="video/mp4">
+                        </video>
+                    </figure>
+                    <div class="widget uib_w_30 d-margins txt-format" data-uib="media/text" data-ver="0">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>Organizational History</p>
+                            <p>Though the Heritage Alliance only began in 2001, it actually has a much longer history. The present organization resulted from a merger of three previously existing organizations, each of which was dedicated to different aspects
+                                of historic preservation and heritage education. These organizations were the Jonesborough Civic Trust, the Jonesborough/Washington County History Museum, and the Historic Jonesborough Foundation. Each of these organizations
+                                dates back to the 1970s. The present Heritage Alliance, with headquarters in the historic Duncan House in Jonesborough, maintains important aspects of each of these prior organizations while increasing efficiency and avoiding
+                                duplication of effort. Our expanded mission now recognizes the role we play, not only in Jonesborough and Washington County, but also in the wider region.</p>
+                            <p>&nbsp;</p>
+                        </div>
+                    </div>
+                    <div class="widget uib_w_31 d-margins txt-format" data-uib="media/text" data-ver="0">
+                        <div class="widget-container left-receptacle"></div>
+                        <div class="widget-container right-receptacle"></div>
+                        <div>
+                            <p>Our Philosophy of Preservation</p>
+                            <p>The mission of the Heritage Alliance combines historic preservation with history education. We believe that blending these dimensions enables us to provide uniquely effective services to a wide range of public audiences, including
+                                adults and children, local citizens and tourists. The Heritage Alliance is dedicated to advocating and providing technical support for the preservation of our region’s architecture, developing innovative museum experiences
+                                that bring history onto our public streets, and providing unique history education opportunities for both the people who live in our region and the people who visit it.</p>
+                            <p>&nbsp;</p>
+                            <p>Our goal is to influence and encourage individuals, businesses, and local governments to actively participate in the nationwide movement to preserve, revitalize and appreciate the past that is part of the fabric of our everyday
+                                life.</p>
+                        </div>
+                    </div>
+                </div>
                 <div id="museumspage" class="upage-content vertical-col left hidden">
-					<div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
                         <div class="col uib_col_6 col-0_12-12" data-uib="layout/col" data-ver="0">
                             <div class="widget-container content-area vertical-col">
                                 <div class="widget uib_w_19 d-margins txt-format" data-uib="media/text" data-ver="0" id="museumspage-txt">
@@ -166,19 +187,19 @@ intel.xdk.device.scanBarcode();
                                     <div>
                                         <p>Heritage Alliance Museums</p>
                                     </div>
-									<div>
-										<p id="museums-body"></p>
-										<p id="museums-buttons">
-											<button class="btn widget uib_w_4 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="chester-btn"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>Chester Inn Museum</button>
-											<button class="btn widget uib_w_4 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="washington-btn"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>Washington County History Museum</button>
-										</p>
-									</div>
+                                    <div>
+                                        <p id="museums-body"></p>
+                                        <p id="museums-buttons">
+                                            <button class="btn widget uib_w_4 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="chester-btn">Chester Inn Museum</button>
+                                            <button class="btn widget uib_w_4 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="washington-btn">Washington County History Museum</button>
+                                        </p>
+                                    </div>
                                 </div><span class="uib_shim"></span>
                             </div>
                         </div>
                         <span class="uib_shim"></span>
                     </div>
-				</div>
+                </div>
                 <div id="exhibitspage" class="upage-content vertical-col left hidden">
                     <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
                         <div class="col uib_col_6 col-0_12-12" data-uib="layout/col" data-ver="0">
@@ -195,12 +216,10 @@ intel.xdk.device.scanBarcode();
                         <span class="uib_shim"></span>
                     </div>
                     <button class="btn widget uib_w_18 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="scan-btn"><i class="glyphicon glyphicon-qrcode button-icon-left" data-position="left"></i>Scan Now</button>
-                    <script>
-                        $("#scan-btn").on("click", intel.xdk.scanBarcode);
-                    </script>
+
                 </div>
                 <div id="calendarpage" class="upage-content vertical-col left hidden">
-					<div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
+                    <div class="grid grid-pad urow uib_row_6 row-height-6" data-uib="layout/row" data-ver="0">
                         <div class="col uib_col_6 col-0_12-12" data-uib="layout/col" data-ver="0">
                             <div class="widget-container content-area vertical-col">
                                 <div class="widget uib_w_19 d-margins txt-format" data-uib="media/text" data-ver="0" id="calenderpage-txt">
@@ -209,15 +228,15 @@ intel.xdk.device.scanBarcode();
                                     <div>
                                         <p>Heritage Alliance Calender</p>
                                     </div>
-									<div>
-										<p id="calender-body"></p>
-									</div>
+                                    <div>
+                                        <p id="calender-body"></p>
+                                    </div>
                                 </div><span class="uib_shim"></span>
                             </div>
                         </div>
                         <span class="uib_shim"></span>
                     </div>
-				</div>
+                </div>
                 <div id="contactpage" class="upage-content vertical-col left hidden">
 
                     <span class="widget uib_w_20 d-margins color badge" data-uib="twitter%20bootstrap/badge_and_label" data-ver="1">Contact Us</span>
@@ -238,54 +257,14 @@ intel.xdk.device.scanBarcode();
                     <div class="widget uib_w_27 maps-size d-margins" data-uib="media/google_maps" data-ver="0" data-rpath="null" data-center-address="212 East Sabin Drive Jonesborough, TN 37659" id="google_map" data-center-longitude=" -82.472011" data-center-latitude="36.297101"
                     data-zoom="15" data-marker-title="The Heritage Alliance"></div>
                 </div>
-                <div class="inner-element uib_w_10 uib_sidebar leftbar bar-bg thumb-bg bar-gutter swipe" data-uib="layout/left_sidebar" data-ver="1" data-anim="{'style':'overlap', 'v':200, 'side':'left', 'oh':18, 'dur':200}" id="sidebar">
-                    <div class="sidebar-thumb"></div>
 
-                    <div class="sidebar-content content-area vertical-col">
-
-                        <div class="grid grid-pad urow uib_row_3 row-height-3" data-uib="layout/row" data-ver="0">
-                            <div class="col uib_col_3 col-0_12-12" data-uib="layout/col" data-ver="0">
-                                <div class="widget-container content-area vertical-col">
-                                    <button class="btn widget uib_w_11 d-margins btn-link" data-uib="twitter%20bootstrap/button" data-ver="1" id="closemenu-btn"><i class="glyphicon glyphicon-remove button-icon-left" data-position="left"></i>Close Menu</button>
-                                    <div class="grid grid-pad urow uib_row_4 row-height-4" data-uib="layout/row" data-ver="0">
-                                        <div class="col uib_col_4 col-1_12-12" data-uib="layout/col" data-ver="0">
-                                            <div class="widget-container content-area vertical-col">
-                                                <span class="uib_shim"></span>
-                                            </div>
-                                        </div>
-                                        <span class="uib_shim"></span>
-                                    </div>
-                                    <button class="btn widget uib_w_12 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-aboutus"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>About Us</button>
-                                    <button class="btn widget uib_w_13 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-museums"><i class="el el-briefcase button-icon-left" data-position="left"></i>Museums</button>
-                                    <button class="btn widget uib_w_14 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-exhibits"><i class="el el-camera button-icon-left" data-position="left"></i>Exhibits</button>
-                                    <button class="btn widget uib_w_15 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-calendar"><i class="el el-calendar button-icon-left" data-position="left"></i>Calendar</button>
-                                    <button class="btn widget uib_w_16 d-margins btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="menu-contact"><i class="glyphicon glyphicon-envelope button-icon-left" data-position="left"></i>Contact</button>
-                                    <div class="widget uib_w_29 scale-image d-margins" data-uib="media/img" data-ver="0">
-                                        <figure class="figure-align">
-                                            <img src="images/heritage-header-logo-01.png">
-                                            <figcaption data-position="bottom"></figcaption>
-                                        </figure>
-                                    </div><span class="uib_shim"></span>
-                                </div>
-                            </div>
-                            <span class="uib_shim"></span>
-                        </div>
-
-                        <div class="grid grid-pad urow uib_row_5 row-height-5" data-uib="layout/row" data-ver="0">
-                            <div class="col uib_col_5 col-0_12-12" data-uib="layout/col" data-ver="0">
-                                <div class="widget-container content-area vertical-col">
-
-                                    <span class="uib_shim"></span>
-                                </div>
-                            </div>
-                            <span class="uib_shim"></span>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-		<script type="application/javascript" src="./js/jquery-1.11.3.min.js"></script>
-		<script type="application/javascript" src="./js/heritage_alliance_db.js"></script>
+        <script>
+            $("#scan-btn").on("click", intel.xdk.scanBarcode);
+        </script>
+        <script type="application/javascript" src="./js/jquery-1.11.3.min.js"></script>
+        <script type="application/javascript" src="./js/heritage_alliance_db.js"></script>
     </body>
 
 </html>
