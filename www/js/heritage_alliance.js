@@ -1,5 +1,3 @@
-//we need to get the php scripts onto their server so this stuff can still work after i graduate in a couple weeks
-
 var chester_text = "<b>Chester Inn State Historic Site – Chester Inn Museum</b>" +
 "<br />A State Owned Historic Site Operated by the Heritage Alliance of Northeast Tennessee and Southwest Virginia.  The operation of the Chester Inn is partially funded under an agreement with the Tennessee Department of Environment and Conservation – Tennessee Historical Commission." +
 "<br /><br />116 West Main Street" +
@@ -37,6 +35,7 @@ var calendar_data = '';
 var events_for_date = '';
 var calender_body = $('#calender-body');
 var date_to_query;
+var form_message = $('#form_message');
 
 //putting this here for now for testing purposes
 var museums_button_div = $('#museums-buttons');
@@ -58,6 +57,10 @@ var QueryBuilder = function(){ //i know dr. barrett loves comments so this one's
 		var query_url = heritage_alliance_url + 'get_cal_events.php';
 		return query_url;
 	};
+	this.build_contact_query = function(){
+		var query_url = heritage_alliance_url + 'contact.php';
+		return query_url;
+	}
 }
 
 var HeritageAllianceDatabase = function(){
@@ -65,6 +68,14 @@ var HeritageAllianceDatabase = function(){
 		$.getJSON(query_url, function(query_data){
 			calendar_data = query_data;
 		});
+	};
+	this.send_message_data = function(query_url, post_data){
+		$.post(query_url,
+		   post_data,
+		   function(response){
+			   send_user_success_message(response);
+		   }
+		);
 	};
 }
 
@@ -113,6 +124,8 @@ function home_click(){
 	museums_button_div.append(washington_museum);
 	chester_museum.on("click", chester_click);
 	washington_museum.on("click", washington_click);
+	clear_input_values();
+	form_message.empty();
 }
 
 function chester_click(){
@@ -212,29 +225,61 @@ function display_event_info(){
 }
 
 function form_click(){
-	var contact_name = $('#contact_name').val();
-	var contact_email = $('#contact_email').val();
-	var contact_text = $('#contact_text').val();
+	form_message.empty();
+	var contact_name = remove_html_tags($('#contact_name').val().trim());
+	var contact_email = remove_html_tags($('#contact_email').val().trim());
+	var contact_text = remove_html_tags($('#contact_text').val().trim());
 	var post_data = {"name": contact_name,
 					 "email": contact_email,
 					 "text": contact_text};
 	
 	if (validate_form_data(contact_name, contact_email, contact_text)){
-		$.post("php url",
-		   post_data,
-		   function(response){
-			   console.log(response);
-		   }
-		);
+		var query_url = qb.build_contact_query();
+		hadb.send_message_data(query_url, post_data);
 	}else{
-		send_user_error_message();
-	}	
-	
-	console.log(contact_name); //name
-	console.log(contact_email); //email
-	console.log(contact_text); //text
+		send_user_error_message(form_message);
+	}
 }
 
 function validate_form_data(name, email, text){
+	if(validate_input(name) && validate_input(text) && validate_email(email)){
+		return true;
+	}
 	return false;
+}
+
+function validate_input(text){
+	if(Boolean(text)){
+		return true;
+	}
+	return false;
+}
+
+function validate_email(email){
+	var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|edu|museum)\b/i;
+	return regex.test(email);
+}
+
+function remove_html_tags(text){
+	var regex = /(<([^>]+)>)/ig;
+	return text.replace(regex, "");
+}
+
+function send_user_error_message(){
+	form_message.empty();
+	form_message.css({"color":"red", "text-align":"center", "font-weight": "bold"});
+	form_message.append('Invalid input.');
+}
+
+function send_user_success_message(msg){
+	form_message.empty();
+	form_message.css({"color":"white", "text-align":"center", "font-weight": "bold"});
+	form_message.append(msg);
+	clear_input_values();
+}
+
+function clear_input_values(){
+	$('#contact_name').val('');
+	$('#contact_email').val('');
+	$('#contact_text').val('');
 }
