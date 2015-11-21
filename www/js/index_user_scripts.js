@@ -45,18 +45,7 @@
     });
     
         /* button  #menu-btn */
-    $(document).on("click", "#menu-btn", function(evt)
-    {
-         /*global uib_sb */
-         /* Other possible functions are: 
-           uib_sb.open_sidebar($sb)
-           uib_sb.close_sidebar($sb)
-           uib_sb.toggle_sidebar($sb)
-            uib_sb.close_all_sidebars()
-          See js/sidebar.js for the full sidebar API */
-        
-         uib_sb.toggle_sidebar($("#sidebar"));  
-    });
+    
     
         /* button  #closemenu-btn */
     $(document).on("click", "#closemenu-btn", function(evt)
@@ -112,6 +101,13 @@
     
         /* button  #home-btn */
     $(document).on("click", "#home-btn", function(evt)
+    {
+         /*global activate_subpage */
+         activate_subpage("#page_98_19"); 
+    });
+    
+        /* button  #menu-btn */
+    $(document).on("click", "#menu-btn", function(evt)
     {
          /*global activate_subpage */
          activate_subpage("#page_98_19"); 

@@ -6,7 +6,7 @@
       "projectTypeName": "com.intel.xdk.projecttype.jsapp",
       "src": "jsapp/template-blank-cordova-ad-project/sample.zip",
       "projectGuid": "351d09a4-2580-4b03-ab50-e8ca5899becf",
-      "lastModifiedDate": 1445999719080,
+      "lastModifiedDate": 1448048355628,
       "creationDate": 1445975375967
     },
     "XDK-app-designer": "true",
@@ -100,26 +100,6 @@
         "dependedBy": []
       },
       {
-        "id": "intel.xdk.cache",
-        "name": "Intel XDK Cache",
-        "version": "1.2.2",
-        "originType": "repo",
-        "origin": "https://github.com/01org/cordova-plugin-intel-xdk-cache.git",
-        "gitref": "r1.2.2",
-        "subdir": ".",
-        "paramvals": {},
-        "sourceLocation": "plugins/intel.xdk.cache",
-        "selectedState": "Included",
-        "checksum": "3ac8cdac",
-        "dependsOn": [],
-        "topLevel": true,
-        "cordovaVersion": ">=3.0.0",
-        "permissions": {},
-        "description": "Intel XDK Cache Plugin",
-        "data": {},
-        "dependedBy": []
-      },
-      {
         "id": "cordova-plugin-geolocation",
         "name": "Geolocation",
         "version": "1.0.1",
@@ -183,8 +163,62 @@
           "intents": [],
           "navigation": []
         },
-        "icons_": [],
-        "splashes_": [],
+        "icons_": [
+          {
+            "relPath": "logos_splashscreens/appIcon_36.png",
+            "density": "ldpi",
+            "height": 36,
+            "width": 36
+          },
+          {
+            "relPath": "logos_splashscreens/appIcon_48.png",
+            "density": "mdpi",
+            "height": 48,
+            "width": 48
+          },
+          {
+            "relPath": "logos_splashscreens/appIcon_72.png",
+            "density": "hdpi",
+            "height": 72,
+            "width": 72
+          },
+          {
+            "relPath": "logos_splashscreens/appIcon_96.png",
+            "density": "xhdpi",
+            "height": 96,
+            "width": 96
+          }
+        ],
+        "splashes_": [
+          {
+            "relPath": "logos_splashscreens/splashscreen_ldpi.png",
+            "density": "ldpi",
+            "height": 426,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "logos_splashscreens/splashscreen_mdpi.png",
+            "density": "mdpi",
+            "height": 470,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "logos_splashscreens/splashscreen_hdpi.png",
+            "density": "hdpi",
+            "height": 640,
+            "width": 480,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "logos_splashscreens/splashscreen_xhdpi.png",
+            "density": "xhdpi",
+            "height": 960,
+            "width": 720,
+            "orientation": "portrait"
+          }
+        ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "5.1.1",
@@ -214,8 +248,62 @@
           "intents": [],
           "navigation": []
         },
-        "icons_": [],
-        "splashes_": [],
+        "icons_": [
+          {
+            "relPath": "logos_splashscreens/appIcon_36.png",
+            "density": "ldpi",
+            "height": 36,
+            "width": 36
+          },
+          {
+            "relPath": "logos_splashscreens/appIcon_48.png",
+            "density": "mdpi",
+            "height": 48,
+            "width": 48
+          },
+          {
+            "relPath": "logos_splashscreens/appIcon_72.png",
+            "density": "hdpi",
+            "height": 72,
+            "width": 72
+          },
+          {
+            "relPath": "logos_splashscreens/appIcon_96.png",
+            "density": "xhdpi",
+            "height": 96,
+            "width": 96
+          }
+        ],
+        "splashes_": [
+          {
+            "relPath": "logos_splashscreens/splashscreen_ldpi.png",
+            "density": "ldpi",
+            "height": 426,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "logos_splashscreens/splashscreen_mdpi.png",
+            "density": "mdpi",
+            "height": 470,
+            "width": 320,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "logos_splashscreens/splashscreen_hdpi.png",
+            "density": "hdpi",
+            "height": 640,
+            "width": 480,
+            "orientation": "portrait"
+          },
+          {
+            "relPath": "logos_splashscreens/splashscreen_xhdpi.png",
+            "density": "xhdpi",
+            "height": 960,
+            "width": 720,
+            "orientation": "portrait"
+          }
+        ],
         "addlPermissions_": "",
         "excludedLibraries_": "",
         "cordovaCLIVersion_": "5.1.1",

@@ -33,16 +33,6 @@
         "is_top_level": true,
         "variables": {}
     },
-    "intel.xdk.cache": {
-        "source": {
-            "type": "git",
-            "url": "https://github.com/01org/cordova-plugin-intel-xdk-cache.git",
-            "subdir": ".",
-            "ref": "r1.2.2"
-        },
-        "is_top_level": true,
-        "variables": {}
-    },
     "cordova-plugin-geolocation": {
         "source": {
             "type": "local",
