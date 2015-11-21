@@ -22,11 +22,11 @@ var washington_text = "<b>Jonesborough/Washington County History Museum & Archiv
 
 //main screen buttons
 var home_btn = $('#menu-btn');
-var aboutus_btn = $('#aboutus-btn');
 var museums_btn = $('#museums-btn');
 var exhibits_btn = $('#exhibits-btn');
 var calender_btn = $('#calendar-btn');
 var contact_btn = $('#contact-btn');
+var form_submit_btn = $('#form-submit-btn');
 
 //global variables
 var hadb; //database object
@@ -72,11 +72,10 @@ function init(){
 	hadb = new HeritageAllianceDatabase();
 	qb = new QueryBuilder();
 	
-	aboutus_btn.on("click", about_click);
 	museums_btn.on("click", museums_click);
 	calender_btn.on("click", calender_click);
-	
 	home_btn.on("click", home_click);
+	form_submit_btn.on("click", form_click);
 	chester_museum.on("click", chester_click);
 	washington_museum.on("click", washington_click);
 	
@@ -114,12 +113,6 @@ function home_click(){
 	museums_button_div.append(washington_museum);
 	chester_museum.on("click", chester_click);
 	washington_museum.on("click", washington_click);
-}
-
-function about_click(){
-	var about_body = $('#about-body');
-	about_body.empty();
-	about_body.append(about_text);
 }
 
 function chester_click(){
@@ -216,4 +209,32 @@ function display_event_info(){
 	if(events.length === 0){
 		calender_body.append("No events scheduled for this date.");
 	}
+}
+
+function form_click(){
+	var contact_name = $('#contact_name').val();
+	var contact_email = $('#contact_email').val();
+	var contact_text = $('#contact_text').val();
+	var post_data = {"name": contact_name,
+					 "email": contact_email,
+					 "text": contact_text};
+	
+	if (validate_form_data(contact_name, contact_email, contact_text)){
+		$.post("php url",
+		   post_data,
+		   function(response){
+			   console.log(response);
+		   }
+		);
+	}else{
+		send_user_error_message();
+	}	
+	
+	console.log(contact_name); //name
+	console.log(contact_email); //email
+	console.log(contact_text); //text
+}
+
+function validate_form_data(name, email, text){
+	return false;
 }
