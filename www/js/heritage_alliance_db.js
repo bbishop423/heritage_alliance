@@ -1,3 +1,5 @@
+//we need to get the php scripts onto their server so this stuff can still work after i graduate in a couple weeks
+
 var chester_text = "<b>Chester Inn State Historic Site – Chester Inn Museum</b>" +
 "<br />A State Owned Historic Site Operated by the Heritage Alliance of Northeast Tennessee and Southwest Virginia.  The operation of the Chester Inn is partially funded under an agreement with the Tennessee Department of Environment and Conservation – Tennessee Historical Commission." +
 "<br /><br />116 West Main Street" +
@@ -72,18 +74,7 @@ window.onload = function(){
 	init(); //faking it for now since i'm testing in a browser
 }
 
-var fake_data = { //this is fake data if you couldn't tell from the variable name
-	name: 'Heritage Alliance',
-	info: 'Here is some info about us.  This is very informative info.  Wow, what an information overload',
-	date: 'today',
-	random: 'here is some more random info'
-}
-
 var QueryBuilder = function(){ //i know dr. barrett loves comments so this one's for him
-	this.build_query = function(info_type, info_item){
-		var query_url = heritage_alliance_url + 'get_data.php?info_type=' + info_type + '&info_item=' + info_item;
-		return query_url;
-	};
 	this.build_calender_query = function(){
 		var query_url = heritage_alliance_url + 'get_cal_events.php';
 		return query_url;
@@ -91,11 +82,6 @@ var QueryBuilder = function(){ //i know dr. barrett loves comments so this one's
 }
 
 var HeritageAllianceDatabase = function(){
-	this.get_data = function(query_url){
-		$.get(query_url, function(query_data){
-			response_data = query_data;
-		});
-	};
 	this.get_calendar_data = function(query_url){
 		$.getJSON(query_url, function(query_data){
 			calendar_data = query_data;
@@ -174,9 +160,6 @@ function washington_click(){
 
 function museums_click(){
 	museums_body.empty();
-	//faking the ajax call here to get about text from db
-	//var query_url = qb.build_query("museum_info", "main_text");
-	//var museum_data = hadb.get_data(query_url);
 }
 
 function json_event_to_text(event){
