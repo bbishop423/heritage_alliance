@@ -18,6 +18,15 @@ var washington_text = "<b>Jonesborough/Washington County History Museum & Archiv
 "<br />Monday – Friday: 9:00am – 5:00pm" +
 "<br />Saturday & Sunday: 10:00am – 5:00 pm<br />";
 
+var about_text = "<b>Mission</b><br />" +
+"The Heritage Alliance is dedicated to the preservation of the architectural, historical, and cultural heritage of our region and to providing educational experiences related to history and heritage for a wide range of audiences.<br /><br />" +
+"<b>Organizational History</b><br />" +
+"Though the Heritage Alliance only began in 2001, it actually has a much longer history. The present organization resulted from a merger of three previously existing organizations, each of which was dedicated to different aspects of historic preservation and heritage education. These organizations were the Jonesborough Civic Trust, the Jonesborough/Washington County History Museum, and the Historic Jonesborough Foundation. Each of these organizations dates back to the 1970s. The present Heritage Alliance, with headquarters in the historic Duncan House in Jonesborough, maintains important aspects of each of these prior organizations while increasing efficiency and avoiding duplication of effort. Our expanded mission now recognizes the role we play, not only in Jonesborough and Washington County, but also in the wider region.<br /><br />" +
+"<b>Our Philosophy of Preservation</b><br />" +
+"The mission of the Heritage Alliance combines historic preservation with history education. We believe that blending these dimensions enables us to provide uniquely effective services to a wide range of public audiences, including adults and children, local citizens and tourists.<br />" +
+"The Heritage Alliance is dedicated to advocating and providing technical support for the preservation of our region’s architecture, developing innovative museum experiences that bring history onto our public streets, and providing unique history education opportunities for both the people who live in our region and the people who visit it.<br />" +
+"Our goal is to influence and encourage individuals, businesses, and local governments to actively participate in the nationwide movement to preserve, revitalize and appreciate the past that is part of the fabric of our everyday life.<br />";
+
 
 //main screen buttons
 var menu_btn = $('#menu-btn');
@@ -46,12 +55,16 @@ var response_data = '';
 var calendar_data = '';
 var events_for_date = '';
 var calender_body = $('#calender-body');
+var date_to_query;
 
 //putting this here for now for testing purposes
 var museums_button_div = $('#museums-buttons');
 var chester_museum = $('#chester-btn');
 var washington_museum = $('#washington-btn');
 var museums_body = $('#museums-body');
+var calendar_buttons_div = $("#calendar-buttons");
+var next_day_button = $('#next-day-btn');
+var prev_day_button = $('#prev-day-btn');
 
 
 window.onload = function(){
@@ -105,8 +118,10 @@ function init(){
 	chester_museum.on("click", chester_click);
 	washington_museum.on("click", washington_click);
 	
-	about_click(); //calling the function in init fixes the double click bug
-	get_calendar_events(); //fixing double click bug for this event also
+	next_day_button.on("click", next_date_events);
+	prev_day_button.on("click", previous_date_events);
+	
+	get_calendar_events(); //fixing double click bug for this event
 }
 
 function get_calendar_events(){
@@ -142,10 +157,7 @@ function home_click(){
 function about_click(){
 	var about_body = $('#about-body');
 	about_body.empty();
-	var query_url = qb.build_query("about", "mission");
-	hadb.get_data(query_url);
-	about_body.append(response_data);
-	response_data = '';
+	about_body.append(about_text);
 }
 
 function chester_click(){
@@ -204,42 +216,35 @@ function find_day_of_week(numeric_day){
 	return text_day;
 }
 
-//not sure about these functions
-/*
-var current = new Date(); //'Mar 11 2015' current.getTime() = 1426060964567
-var followingDay = new Date(current.getTime() + 86400000); // + 1 day in ms
-followingDay.toLocaleDateString();
-*/
-function get_next_date_events(relative_date){ //delete later
-	calender_body.empty();
-	
-	var tomorrow = (relative_date.getDate() + 1);
+function previous_date_events(){
+	var previous_day = new Date(date_to_query.getTime() - 86400000);
+	date_to_query = previous_day;
+	display_event_info();
 }
 
-function get_previous_date_events(relative_date){ //delete later
-	calender_body.empty();
-	
-	var yesterday = (relative_date.getDate() - 1);
+function next_date_events(){
+	var next_day = new Date(date_to_query.getTime() + 86400000);
+	date_to_query = next_day;
+	display_event_info();
 }
 
-function get_event_date_object(date_increment){ //delete later
+function get_todays_events(){
 	var date = new Date();
-	date = (date.getDate() + date_increment);
 	return date;
 }
-//not sure about these functions
 
-//i think there is a way to scroll through dates all in this 1 function
-//just call it recursively and depending on the parameter is whether +1 or -1 or today
-function calender_click(date_to_search){
-	date_to_search = date_to_search || 0;
+function calender_click(){
+	date_to_query = get_todays_events();
+	display_event_info();
+}
+
+function display_event_info(){
 	calender_body.empty();
 	
-	var date = new Date();
-	var month = (date.getMonth() + 1);
-	var day = date.getDate();
-	var year = date.getFullYear();
-	var day_of_the_week = find_day_of_week(date.getDay());
+	var month = (date_to_query.getMonth() + 1);
+	var day = date_to_query.getDate();
+	var year = date_to_query.getFullYear();
+	var day_of_the_week = find_day_of_week(date_to_query.getDay());
 	
 	calender_body.append("<b>" + month + " / " + day + " / " + year + "  " + day_of_the_week + "</b><br />");
 	
