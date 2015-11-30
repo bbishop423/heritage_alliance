@@ -55,41 +55,7 @@
   * The cordova.js script is required if you convert your "Standard HTML5" project into a "Cordova" project.
   * You can safely ignore the error or comment out this line if you will not be developing a Cordova app.
 -->
-        <script src="cordova.js" id="xdkJScordova_"></script>
-
-        <script src="js/app.js"></script>
-        <!-- for your event code, see README and file comments for details -->
-        <script src="js/init-app.js"></script>
-        <!-- for your init code, see README and file comments for details -->
-        <script src="xdk/init-dev.js"></script>
-        <!-- normalizes device and document ready events, see file for details -->
-        <script type="application/javascript" src="lib/jquery.min.js"></script>
-        <script type="application/javascript" src="marginal/marginal-position.min.js"></script>
-        <script type="application/javascript" src="js/index_user_scripts.js"></script>
-        <script type="application/javascript" src="xdk/ad/bs_subpage.js"></script>
-        <script type="application/javascript" src="sidebar/js/hammer.js"></script>
-        <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
-        <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
-        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
-        <script>
-            document.addEventListener("intel.xdk.device.barcode.scan", barcodeScanned, false);
-function barcodeScanned(evt) {
-    intel.xdk.notification.beep(1);
-    if (evt.type == "intel.xdk.device.barcode.scan") {
-        if (evt.success == true) {
-            var url = evt.codedata;
-            intel.xdk.device.showRemoteSite(url, 264, 0,56, 48)
-        } else {
-          //scan cancelled
-        }
-    }
-}
-intel.xdk.device.scanBarcode();
-        </script>
-
-        <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUJppU6Ll2sFw68zFj_p8fh74Q3xN3GI&amp;sensor=true"></script>
-        <script type="application/javascript" src="google_maps/google_maps.js"></script>
-
+       
     </head>
 
     <body>
@@ -173,7 +139,8 @@ intel.xdk.device.scanBarcode();
                                 that bring history onto our public streets, and providing unique history education opportunities for both the people who live in our region and the people who visit it.</p>
                             <p>&nbsp;</p>
                             <p>Our goal is to influence and encourage individuals, businesses, and local governments to actively participate in the nationwide movement to preserve, revitalize and appreciate the past that is part of the fabric of our everyday
-                                life.</p>
+                                life.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -228,19 +195,19 @@ intel.xdk.device.scanBarcode();
                                     <div>
                                         <p>Heritage Alliance Calender</p>
                                     </div>
-<<<<<<< HEAD
+                                    &lt;&lt;&lt;&lt;&lt;&lt;&lt; HEAD
                                     <div>
                                         <p id="calender-body"></p>
                                     </div>
-=======
-									<div>
-										<p id="calender-body"></p>
-										<p id="calendar-buttons">
-											<button class="btn widget uib_w_4 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="prev-day-btn"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>Previous Day</button>
-											<button class="btn widget uib_w_4 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="next-day-btn"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>Next Day</button>
-										</p>
-									</div>
->>>>>>> master
+                                    =======
+                                    <div>
+                                        <p id="calender-body"></p>
+                                        <p id="calendar-buttons">
+                                            <button class="btn widget uib_w_4 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="prev-day-btn"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>Previous Day</button>
+                                            <button class="btn widget uib_w_4 d-margins btn-lg btn-default" data-uib="twitter%20bootstrap/button" data-ver="1" id="next-day-btn"><i class="glyphicon glyphicon-info-sign button-icon-left" data-position="left"></i>Next Day</button>
+                                        </p>
+                                    </div>
+                                    &gt;&gt;&gt;&gt;&gt;&gt;&gt; master
                                 </div><span class="uib_shim"></span>
                             </div>
                         </div>
@@ -270,8 +237,43 @@ intel.xdk.device.scanBarcode();
 
             </div>
         </div>
+         <script src="cordova.js" id="xdkJScordova_"></script>
+
+        <script src="js/app.js"></script>
+        <!-- for your event code, see README and file comments for details -->
+        <script src="js/init-app.js"></script>
+        <!-- for your init code, see README and file comments for details -->
+        <script src="xdk/init-dev.js"></script>
+        <!-- normalizes device and document ready events, see file for details -->
+        <script type="application/javascript" src="lib/jquery.min.js"></script>
+        <script type="application/javascript" src="marginal/marginal-position.min.js"></script>
+        <script type="application/javascript" src="js/index_user_scripts.js"></script>
+        <script type="application/javascript" src="xdk/ad/bs_subpage.js"></script>
+        <script type="application/javascript" src="sidebar/js/hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/jquery.hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/swipe-hammer.js"></script>
+        <script type="application/javascript" src="sidebar/js/sidebar.js"></script>
         <script>
-            $("#scan-btn").on("click", intel.xdk.scanBarcode);
+            document.addEventListener("intel.xdk.device.barcode.scan", barcodeScanned, false);
+function barcodeScanned(evt) {
+    intel.xdk.notification.beep(1);
+    if (evt.type == "intel.xdk.device.barcode.scan") {
+        if (evt.success == true) {
+            //var url = evt.codedata;
+           window.open(evt.href, '_system', 'location=yes');
+        } else {
+          //scan cancelled
+        }
+    }
+}
+intel.xdk.device.scanBarcode();
+        </script>
+
+        <script type="application/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBTUJppU6Ll2sFw68zFj_p8fh74Q3xN3GI&amp;sensor=true"></script>
+        <script type="application/javascript" src="google_maps/google_maps.js"></script>
+
+        <script>
+            $("#scan-btn").on("click", intel.xdk.device.scanBarcode);
         </script>
         <script type="application/javascript" src="./js/jquery-1.11.3.min.js"></script>
         <script type="application/javascript" src="./js/heritage_alliance_db.js"></script>
