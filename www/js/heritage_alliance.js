@@ -1,5 +1,3 @@
-//we need to get the php scripts onto their server so this stuff can still work after i graduate in a couple weeks
-
 var chester_text = "<b>Chester Inn State Historic Site – Chester Inn Museum</b>" +
 "<br />A State Owned Historic Site Operated by the Heritage Alliance of Northeast Tennessee and Southwest Virginia.  The operation of the Chester Inn is partially funded under an agreement with the Tennessee Department of Environment and Conservation – Tennessee Historical Commission." +
 "<br /><br />116 West Main Street" +
@@ -20,44 +18,24 @@ var washington_text = "<b>Jonesborough/Washington County History Museum & Archiv
 "<br />Monday – Friday: 9:00am – 5:00pm" +
 "<br />Saturday & Sunday: 10:00am – 5:00 pm<br />";
 
-var about_text = "<b>Mission</b><br />" +
-"The Heritage Alliance is dedicated to the preservation of the architectural, historical, and cultural heritage of our region and to providing educational experiences related to history and heritage for a wide range of audiences.<br /><br />" +
-"<b>Organizational History</b><br />" +
-"Though the Heritage Alliance only began in 2001, it actually has a much longer history. The present organization resulted from a merger of three previously existing organizations, each of which was dedicated to different aspects of historic preservation and heritage education. These organizations were the Jonesborough Civic Trust, the Jonesborough/Washington County History Museum, and the Historic Jonesborough Foundation. Each of these organizations dates back to the 1970s. The present Heritage Alliance, with headquarters in the historic Duncan House in Jonesborough, maintains important aspects of each of these prior organizations while increasing efficiency and avoiding duplication of effort. Our expanded mission now recognizes the role we play, not only in Jonesborough and Washington County, but also in the wider region.<br /><br />" +
-"<b>Our Philosophy of Preservation</b><br />" +
-"The mission of the Heritage Alliance combines historic preservation with history education. We believe that blending these dimensions enables us to provide uniquely effective services to a wide range of public audiences, including adults and children, local citizens and tourists.<br />" +
-"The Heritage Alliance is dedicated to advocating and providing technical support for the preservation of our region’s architecture, developing innovative museum experiences that bring history onto our public streets, and providing unique history education opportunities for both the people who live in our region and the people who visit it.<br />" +
-"Our goal is to influence and encourage individuals, businesses, and local governments to actively participate in the nationwide movement to preserve, revitalize and appreciate the past that is part of the fabric of our everyday life.<br />";
-
-
 //main screen buttons
-var menu_btn = $('#menu-btn');
-var home_btn = $('#home-btn');
-var aboutus_btn = $('#aboutus-btn');
+var home_btn = $('#menu-btn');
 var museums_btn = $('#museums-btn');
 var exhibits_btn = $('#exhibits-btn');
 var calender_btn = $('#calendar-btn');
 var contact_btn = $('#contact-btn');
-
-//swipe menu buttons
-//i think these will get deleted
-var menu_close = $('#closemenu-btn');
-var menu_aboutus = $('#menu-aboutus');
-var menu_museums = $('#menu-museums');
-var menu_exhibits = $('#menu-exhibits');
-var menu_calender = $('#menu-calendar');
-var menu_contact = $('#menu-contact');
+var form_submit_btn = $('#form-submit-btn');
 
 //global variables
 var hadb; //database object
 var qb; //query builder
 var heritage_alliance_url = 'http://einstein.etsu.edu/~bishopbj/'; //using this url for testing
 //var heritage_alliance_url = 'http://www.heritageall.org/'; //this is the real url but we cant use it for now
-var response_data = '';
 var calendar_data = '';
 var events_for_date = '';
 var calender_body = $('#calender-body');
 var date_to_query;
+var form_message = $('#form_message');
 
 //putting this here for now for testing purposes
 var museums_button_div = $('#museums-buttons');
@@ -79,6 +57,10 @@ var QueryBuilder = function(){ //i know dr. barrett loves comments so this one's
 		var query_url = heritage_alliance_url + 'get_cal_events.php';
 		return query_url;
 	};
+	this.build_contact_query = function(){
+		var query_url = heritage_alliance_url + 'contact.php';
+		return query_url;
+	}
 }
 
 var HeritageAllianceDatabase = function(){
@@ -87,20 +69,24 @@ var HeritageAllianceDatabase = function(){
 			calendar_data = query_data;
 		});
 	};
+	this.send_message_data = function(query_url, post_data){
+		$.post(query_url,
+		   post_data,
+		   function(response){
+			   send_user_success_message(response);
+		   }
+		);
+	};
 }
 
 function init(){
 	hadb = new HeritageAllianceDatabase();
 	qb = new QueryBuilder();
 	
-	aboutus_btn.on("click", about_click);
-	menu_aboutus.on("click", about_click);
 	museums_btn.on("click", museums_click);
-	menu_museums.on("click", museums_click);
 	calender_btn.on("click", calender_click);
-	menu_calender.on("click", calender_click);
-	
 	home_btn.on("click", home_click);
+	form_submit_btn.on("click", form_click);
 	chester_museum.on("click", chester_click);
 	washington_museum.on("click", washington_click);
 	
@@ -138,12 +124,8 @@ function home_click(){
 	museums_button_div.append(washington_museum);
 	chester_museum.on("click", chester_click);
 	washington_museum.on("click", washington_click);
-}
-
-function about_click(){
-	var about_body = $('#about-body');
-	about_body.empty();
-	about_body.append(about_text);
+	clear_input_values();
+	form_message.empty();
 }
 
 function chester_click(){
@@ -240,4 +222,64 @@ function display_event_info(){
 	if(events.length === 0){
 		calender_body.append("No events scheduled for this date.");
 	}
+}
+
+function form_click(){
+	form_message.empty();
+	var contact_name = remove_html_tags($('#contact_name').val().trim());
+	var contact_email = remove_html_tags($('#contact_email').val().trim());
+	var contact_text = remove_html_tags($('#contact_text').val().trim());
+	var post_data = {"name": contact_name,
+					 "email": contact_email,
+					 "text": contact_text};
+	
+	if (validate_form_data(contact_name, contact_email, contact_text)){
+		var query_url = qb.build_contact_query();
+		hadb.send_message_data(query_url, post_data);
+	}else{
+		send_user_error_message(form_message);
+	}
+}
+
+function validate_form_data(name, email, text){
+	if(validate_input(name) && validate_input(text) && validate_email(email)){
+		return true;
+	}
+	return false;
+}
+
+function validate_input(text){
+	if(Boolean(text)){
+		return true;
+	}
+	return false;
+}
+
+function validate_email(email){
+	var regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|edu|museum)\b/i;
+	return regex.test(email);
+}
+
+function remove_html_tags(text){
+	var regex = /(<([^>]+)>)/ig;
+	return text.replace(regex, "");
+}
+
+function send_user_error_message(){
+	form_message.empty();
+	form_message.css({"color":"red", "text-align":"center", "font-weight": "bold"});
+	form_message.append('Invalid input.');
+}
+
+function send_user_success_message(msg){
+	form_message.empty();
+	form_message.css({"color":"white", "text-align":"center", "font-weight": "bold"});
+	form_message.append(msg);
+	clear_input_values();
+}
+
+function clear_input_values(){
+	$('#contact_name').val('');
+	$('#contact_email').val('');
+	$('#contact_text').val('');
 }
